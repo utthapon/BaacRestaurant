@@ -1,5 +1,6 @@
 package baac.po.utthapon.baacrestaurant;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -9,8 +10,14 @@ import android.database.sqlite.SQLiteDatabase;
 public class UserTABLE {
 
     private MyOpenHelper objMyOpenHelper;
-
     private SQLiteDatabase writeSqLiteDatabase ,readSqLiteDatabase;
+
+    public static final String User_TABLE = "userTable";
+    public static final String COLUMM_ID_USER = "_id";
+    public static final String COLUMN_USER = "User";
+    public static final String COLUMN_PASSWORD = "password";
+    public static final String COLUMN_NAME = "Name";
+
 
 
 
@@ -21,7 +28,15 @@ public class UserTABLE {
         writeSqLiteDatabase = objMyOpenHelper.getWritableDatabase();
         readSqLiteDatabase = objMyOpenHelper.getWritableDatabase();
 
-
-
     }   //alt insert for crate  constructor
+
+    public long addNewUser(String strUser, String strPassword, String strName) {
+
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(COLUMN_USER,strUser);
+        objContentValues.put(COLUMN_PASSWORD,strPassword);
+        objContentValues.put(COLUMN_NAME,strName);
+        return writeSqLiteDatabase.insert(User_TABLE,null,objContentValues);
+    }
+
 }//main class
