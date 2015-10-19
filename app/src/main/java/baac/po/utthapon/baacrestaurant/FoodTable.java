@@ -20,6 +20,7 @@ public class FoodTable {
     public static final String COLUMN_SOURCE = "Source";
     public static final String COLUMN_PRICE = "Price";
 
+    
     public FoodTable(Context context) {
 
         objMyOpenHelper = new MyOpenHelper(context);
