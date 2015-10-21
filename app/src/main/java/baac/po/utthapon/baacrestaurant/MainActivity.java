@@ -2,6 +2,7 @@ package baac.po.utthapon.baacrestaurant;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.StrictMode;
 import android.preference.DialogPreference;
@@ -95,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
             if (passwordString.equals(strMyresult[2])) {
                 Toast.makeText(MainActivity.this,"welcom" +strMyresult[3],Toast.LENGTH_LONG).show();
 
+                //Intent to order Activity go to another page จาก หน้า main activity ไปหน้า order activity
+                Intent objIntent = new Intent(MainActivity.this,OrderActivity.class);
+                objIntent.putExtra("Name", strMyresult[3]);
+                startActivity(objIntent);
+                finish();
+
+
+
             } else {
                 errorDailog("password false ", "please try again Password False");
             }
@@ -134,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
 
             String strUserURL = "http://swiftcodingthai.com/baac/php_get_data_master.php";
             String strFoodURL= "http://swiftcodingthai.com/baac/php_get_food.php";
+
+
 
             //1 create inputStream
             try {
